@@ -1,5 +1,5 @@
 
-function addMessage(FormData = Object() ) {
+function addMessage(FormData = Object()) {
     return FormData;
 }
 

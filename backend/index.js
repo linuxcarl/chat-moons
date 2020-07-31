@@ -2,7 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-const { api } = require('./config');
+const { api, db } = require('./config');
+const mongoDb = require('./store/mongo');
+
+const url = `mongodb+srv://${db.dbUser}:${db.dbPassword}@${db.dbHost}/${db.dbName}`;
+mongoDb(url);
+
 const app = express();
 const {
   logErrors,

@@ -14,6 +14,8 @@
   "author": "Carlos Enrique Ramírez Flores",
   "license": "MIT",
   "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

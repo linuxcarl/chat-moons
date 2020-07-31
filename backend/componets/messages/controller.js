@@ -1,6 +1,6 @@
-
-function addMessage(FormData = Object()) {
-    return FormData;
+const store = require('./store');
+async function addMessage(FormData = Object()) {
+    return await store.create(FormData);
 }
 
 function getMessages() {

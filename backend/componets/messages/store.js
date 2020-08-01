@@ -1,9 +1,13 @@
 const Model = require('./model');
 
-function create(message){
+function create(message = Object()){
     const myMessage =  new Model(message);
-    myMessage.save();
+    return myMessage.save();
+}
+function getAll(){
+    return Model.find({});
 }
 module.exports ={
-    create
+    create,
+    getAll
 }

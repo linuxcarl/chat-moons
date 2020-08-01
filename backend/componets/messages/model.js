@@ -2,17 +2,20 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const mySchema = new Schema({
-  user: {
-    type: String,
-    required: true,
+const mySchema = new Schema(
+  {
+    user: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    date: Date,
   },
-  message: {
-    type: String,
-    required: true,
-  },
-  date: Date,
-});
+  { versionKey: false }
+);
 
 const model = mongoose.model('message', mySchema);
 module.exports = model;

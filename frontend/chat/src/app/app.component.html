@@ -1,20 +1,29 @@
 <div class="toolbar">
-    <span class="material-icons"> message</span> 
-    <div class="spacer"> Chat</div>
-    <a aria-label="Chat on GitHub" target="_blank" rel="noopener" href="https://github.com/linuxcarl/chat-moons" title="GitHub">
-      <img src="assets/GitHub-Mark-Light-32px.png" alt="" srcset="">
-    </a>
+  <span class="material-icons"> message</span>
+  <div class="spacer"> Chat</div>
+  <a aria-label="Chat on GitHub" target="_blank" rel="noopener" href="https://github.com/linuxcarl/chat-moons"
+    title="GitHub">
+    <img src="assets/GitHub-Mark-Light-32px.png" alt="" srcset="">
+  </a>
 </div>
-<div class="contendt" role="main">
-  <div class="card-container">
+<div class="content" role="main">
+  <div class="card-container" *ngIf="userActive">
     <div class="card card-small">
-      <span>{{ title }} app is running!</span>
+      <span>Bienvenido {{ user }}</span>
     </div>
   </div>
-  <div class="box-write">
+  <div class="box-write" *ngIf="userActive">
     <div class="inputs-write">
-      <input type="text" name="message" id="message" placeholder="Escribir...">
-      <button ><span class="material-icons" style="font-size:30px;">send</span></button>
+      <input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Escribir...">
+      <button type="button"><span class="material-icons" style="font-size:30px;"
+          (click)="sendMessage()">send</span></button>
+    </div>
+  </div>
+  <div class="box-write" *ngIf="!userActive">
+    <div class="inputs-write">
+      <input type="text" name="user" id="user" [(ngModel)]="user" placeholder="Escribe tu nombre">
+      <button type="button"><span class="material-icons" style="font-size:30px;"
+          (click)="addUser()">person_add</span></button>
     </div>
   </div>
 </div>

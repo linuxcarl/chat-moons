@@ -5,13 +5,17 @@
       <img src="assets/GitHub-Mark-Light-32px.png" alt="" srcset="">
     </a>
 </div>
-<div class="content" role="main">
-  <div class="card  card-small">
-    <span>{{ title }} app is running!</span>
-  </div>
+<div class="contendt" role="main">
   <div class="card-container">
     <div class="card card-small">
-      <span>New Component</span>
+      <span>{{ title }} app is running!</span>
     </div>
   </div>
+  <div class="box-write">
+    <div class="inputs-write">
+      <input type="text" name="message" id="message" placeholder="Escribir...">
+      <button ><span class="material-icons" style="font-size:30px;">send</span></button>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>

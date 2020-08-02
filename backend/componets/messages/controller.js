@@ -4,11 +4,13 @@ const { socket } = require('../../socket');
 async function addMessage(FormData = Object()) {
   FormData.date = new Date();
   const message = await store.create(FormData);
-  socket.io.emit('message', message);
+  socket.io.emit('messages', {user:message.user, message:message.message});
+  return message;
 }
 
 async function getMessages() {
-  return await store.getAll();
+  const messages = await store.getAll();
+  return messages;
 }
 
 module.exports = {

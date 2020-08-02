@@ -12,7 +12,7 @@ export class AppComponent {
   isValid: boolean;
   user: string = '';
   message: string;
-  conversation: any;
+  conversation: string[] = [];
   button: false;
   regexUser = new RegExp('^[a-zA-Z ]{3,20}$');
   constructor(private chatService: ChatService) {
@@ -24,14 +24,21 @@ export class AppComponent {
       this.user = sessionStorage.getItem('user');
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMessage();
+  }
   sendMessage() {
-    this.chatService
-      .saveMessage({ user: this.user, message: this.message })
-      .subscribe((res: Message) => {
-        this.conversation = res;
-      });
-    this.message = '';
+    if (this.message!=='') {
+      this.chatService
+        .saveMessage({ user: this.user, message: this.message })
+        .subscribe();
+      this.message = '';
+    }
+  }
+  getMessage(){
+    this.chatService.getMessage().subscribe((message: any) =>{
+      this.conversation.push(message);
+    });
   }
   addUser() {
     if (this.regexUser.test(this.user)) {

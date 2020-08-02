@@ -1,23 +1,29 @@
 <div class="toolbar">
   <span class="material-icons"> message</span>
-  <div class="spacer"> Chat</div>
+  <div class="spacer" *ngIf="!userActive"> Chat</div>
+  <div class="spacer" *ngIf="userActive"> {{user | uppercase }}</div>
   <a aria-label="Chat on GitHub" target="_blank" rel="noopener" href="https://github.com/linuxcarl/chat-moons"
     title="GitHub">
     <img src="assets/GitHub-Mark-Light-32px.png" alt="" srcset="">
   </a>
 </div>
 <div class="content" role="main">
-  <div class="card-container" *ngIf="userActive">
-    <div class="card card-small">
-      <span>Bienvenido {{ user }}</span>
-    </div>
+  <div class="container-chat">
+    <ul>
+      <li *ngFor="let message of conversation" [ngClass]="(user==message.user)?'text-right':'text-left'">
+          <span class="user">{{message.user}}</span>
+          <p>{{message.message}}</p>
+      </li>
+    </ul>
   </div>
   <div class="box-write" *ngIf="userActive">
-    <div class="inputs-write">
-      <input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Escribir...">
-      <button type="button"><span class="material-icons" style="font-size:30px;"
-          (click)="sendMessage()">send</span></button>
-    </div>
+    <form #f="ngForm" (ngSubmit)="sendMessage()" novalidate  autocomplete="off">
+        <div class="inputs-write">
+          <input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Escribir...">
+          <button type="button"><span class="material-icons" style="font-size:30px;"
+            (click)="sendMessage()">send</span></button>
+        </div>
+    </form>
   </div>
   <div class="box-write" *ngIf="!userActive">
     <div class="inputs-write">
